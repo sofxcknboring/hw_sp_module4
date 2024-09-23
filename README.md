@@ -47,9 +47,7 @@ poetry run pytest
 
 ### Отчёт о покрытии
 
-Чтобы просмотреть отчет, откройте файл index.html, который находится в папке htmlcov, в вашем веб-браузере. Вы можете сделать это, выполнив следующую команду:
+Сформировать отчёт:
 ```bash
-open htmlcov/index.html  # Для macOS
-xdg-open htmlcov/index.html  # Для Linux
-start htmlcov/index.html  # Для Windows
+coverage html
 ```

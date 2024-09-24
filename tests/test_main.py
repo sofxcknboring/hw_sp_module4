@@ -50,8 +50,8 @@ def test_category_count(product1, product2):
     Category.product_count = 0
 
     category1 = Category("Category 1", "Description 1", [product1, product2])
-
     assert category1.category_count == 1
+    assert len(category1.products) == 2
     assert category1.product_count == 2
 
     category2 = Category("Category 2", "Description 2", [product1])

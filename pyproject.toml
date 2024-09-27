@@ -49,6 +49,12 @@ exclude = '''
 [tool.isort]
 line_length = 119
 
+[tool.coverage.report]
+exclude_also = [
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
 
 [build-system]
 requires = ["poetry-core"]

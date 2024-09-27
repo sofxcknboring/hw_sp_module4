@@ -1,48 +1,38 @@
 from src.category import Category
+from src.product import Product
 
 
-def test_init(product1, product2, product3, category1):
-    assert product1.name == "Product 1"
-    assert product2.name == "Product 2"
-    assert product3.name == "Product 3"
-
-    assert product1.description == "Description of Product 1"
-    assert product2.description == "Description of Product 2"
-    assert product3.description == "Description of Product 3"
-
-    assert product1.price == 1.0
-    assert product2.price == 2.0
-    assert product3.price == 3.0
-
-    assert product1.quantity == 1
-    assert product2.quantity == 2
-    assert product3.quantity == 3
-
+def test_category_init(product1, product2, product3, category1):
     assert category1.name == "Category Name"
     assert category1.description == "Category Description"
-    assert category1.products == [product1, product2, product3]
+    assert len(category1.products) > 0
 
 
-def test_category_count(product1, product2):
-    Category.category_count = 0
-    Category.product_count = 0
+def test_add_product(category1):
+    new_product = Product("Product 4", "Description of Product 4", 4.0, 4)
+    category1.add_product(new_product)
 
-    category1 = Category("Category 1", "Description 1", [product1, product2])
-    assert category1.category_count == 1
-    assert len(category1.products) == 2
-    assert category1.product_count == 2
-
-    category2 = Category("Category 2", "Description 2", [product1])
-
-    assert category2.category_count == 2
-    assert category2.product_count == 3
+    assert len(category1.products.splitlines()) == 4
+    assert "Product 4" in category1.products
 
 
-def test_product_count_with_empty_category():
-    Category.category_count = 0
-    Category.product_count = 0
+def test_products_output_format(category1):
+    expected_output = (
+        "Product 1, 1.0 руб. Остаток: 1 шт.\n"
+        "Product 2, 2.0 руб. Остаток: 2 шт.\n"
+        "Product 3, 3.0 руб. Остаток: 3 шт.\n"
+    )
+    assert category1.products == expected_output
 
-    category_empty = Category("Category", "Desc", [])
 
-    assert category_empty.category_count == 1
-    assert category_empty.product_count == 0
+def test_category_count():
+    initial_count = Category.category_count
+    Category("New Category", "New Description", [])
+    assert Category.category_count == initial_count + 1
+
+
+def test_product_count(category1):
+    initial_product_count = Category.product_count
+    new_product = Product("Product 4", "Description of Product 4", 4.0, 4)
+    category1.add_product(new_product)
+    assert Category.product_count == initial_product_count + 1

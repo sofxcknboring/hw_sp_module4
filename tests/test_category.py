@@ -1,6 +1,5 @@
 from src.category import Category, ProductIterator
 from src.product import Product
-from tests.conftest import category1
 
 
 def test_category_init(product1, product2, product3, category1):
@@ -12,7 +11,6 @@ def test_category_init(product1, product2, product3, category1):
 def test_category_str(category1):
     expected_str = f"Category Name, количество продуктов: {category1.all_product_count} шт."
     assert str(category1) == expected_str
-
 
 
 def test_add_product(category1):
@@ -49,7 +47,5 @@ def test_product_iterator(category1):
     iterator = ProductIterator(category1)
 
     products = list(iterator)
-    expected_products = [
-        str(product) for product in category1.products
-    ]
+    expected_products = [str(product) for product in category1.products]
     assert products == expected_products

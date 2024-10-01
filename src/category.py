@@ -1,6 +1,3 @@
-
-from src.product import Product
-
 class Category:
     """
     Класс для представления категорий, их количества и количества продуктов в категориях
@@ -40,6 +37,7 @@ class ProductIterator:
     """
     Вспомогательный класс, с помощью которого можно перебирать товары одной категории
     """
+
     category: Category
     index: int
 

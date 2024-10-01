@@ -59,4 +59,3 @@ def test_price_setter_lower_price_accept(product1):
 def test_add_price_and_quantity(product1, product2):
     total_price = product1 + product2
     assert total_price == 5
-

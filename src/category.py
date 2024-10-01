@@ -1,3 +1,6 @@
+
+from src.product import Product
+
 class Category:
     """
     Класс для представления категорий, их количества и количества продуктов в категориях
@@ -8,7 +11,7 @@ class Category:
     __products: list
 
     category_count = 0
-    product_count = 0
+    all_product_count = 0
 
     def __init__(self, name, description, products) -> None:
         self.name = name
@@ -16,12 +19,41 @@ class Category:
         self.__products = products
 
         Category.category_count += 1
-        Category.product_count += len(self.__products)
+        Category.all_product_count += len(self.__products)
 
     def add_product(self, product):
         self.__products.append(product)
-        Category.product_count += 1
+        Category.all_product_count += 1
 
     @property
     def products(self):
-        return "".join([f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт.\n" for p in self.__products])
+        return [str(i) for i in self.__products]
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {self.all_product_count} шт."
+
+    def __iter__(self):
+        return ProductIterator(self)
+
+
+class ProductIterator:
+    """
+    Вспомогательный класс, с помощью которого можно перебирать товары одной категории
+    """
+    category: Category
+    index: int
+
+    def __init__(self, category):
+        self.category = category
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.category.products):
+            product = self.category.products[self.index]
+            self.index += 1
+            return product
+        else:
+            raise StopIteration

@@ -54,3 +54,9 @@ def test_price_setter_lower_price_accept(product1):
     with patch("builtins.input", return_value="y"):
         product1.price = 0.7
         assert product1.price == 0.7
+
+
+def test_add_price_and_quantity(product1, product2):
+    total_price = product1 + product2
+    assert total_price == 5
+

@@ -3,12 +3,7 @@ class Product:
     Класс для представления продуктов
     """
 
-    name: str
-    description: str
-    price: float
-    quantity: int
-
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
@@ -41,3 +36,29 @@ class Product:
     def __add__(self, other):
         if isinstance(other, self.__class__):
             return self.__price * self.quantity + other.__price * other.quantity
+        raise TypeError
+
+
+class Smartphone(Product):
+    """
+    "Смартфон
+    """
+
+    def __init__(self, name, description, price, quantity, efficiency: float, model: str, memory: int, color: str):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """
+    "Трава газонная"
+    """
+
+    def __init__(self, name, description, price, quantity, country: str, germination_period: str, color: str):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color

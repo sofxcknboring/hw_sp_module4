@@ -1,5 +1,7 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product
 
 
@@ -59,3 +61,21 @@ def test_price_setter_lower_price_accept(product1):
 def test_add_price_and_quantity(product1, product2):
     total_price = product1 + product2
     assert total_price == 5
+
+
+def test_add_smartphones_and_lg(smartphones, lawn_grasses):
+    smartphone1 = smartphones[0]
+    smartphone2 = smartphones[1]
+
+    lawn_grass1 = lawn_grasses[0]
+    lawn_grass2 = lawn_grasses[1]
+
+    with pytest.raises(TypeError):
+        total = smartphone1 + lawn_grass1
+        print(total)
+
+    total_price_smartphones = smartphone1 + smartphone2
+    total_price_lawn_grasses = lawn_grass1 + lawn_grass2
+
+    assert total_price_smartphones == 500
+    assert total_price_lawn_grasses == 300

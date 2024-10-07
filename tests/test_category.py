@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category, ProductIterator
 from src.product import Product
 
@@ -15,8 +17,10 @@ def test_category_str(category1):
 
 def test_add_product(category1):
     new_product = Product("Product 4", "Description of Product 4", 4.0, 4)
+    non_product = "Non product"
     category1.add_product(new_product)
-
+    with pytest.raises(TypeError):
+        category1.add_product(non_product)
     assert len(category1.products) == 4
     assert str(new_product) in category1.products
 

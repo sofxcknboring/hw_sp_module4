@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     """
     Класс для представления категорий, их количества и количества продуктов в категориях
@@ -19,8 +22,11 @@ class Category:
         Category.all_product_count += len(self.__products)
 
     def add_product(self, product):
-        self.__products.append(product)
-        Category.all_product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.all_product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products(self):

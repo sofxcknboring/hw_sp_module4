@@ -39,6 +39,15 @@ class Category:
     products: list
 ```
 
+```python
+class ProductIterator:
+    """
+    Вспомогательный класс, с помощью которого можно перебирать товары одной категории
+    """
+    category: Category
+    index: int
+```
+
 ## Тестирование
 
 ```bash

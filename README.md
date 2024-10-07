@@ -29,6 +29,37 @@ class Product:
 ```
 
 ```python
+class Smartphone(Product):
+    """
+    "Смартфон"
+    """
+
+    name: str
+    description: str
+    price: float
+    quantity: int
+    efficiency: float
+    model: str
+    memory: int
+    color: str
+```
+
+```python
+class LawnGrass(Product):
+    """
+    "Трава газонная"
+    """
+
+    name: str
+    description: str
+    price: float
+    quantity: int
+    country: str
+    germination_period: str
+    color: str
+```
+
+```python
 class Category:
     """
     Класс для представления категорий, их количества и количества продуктов в категориях

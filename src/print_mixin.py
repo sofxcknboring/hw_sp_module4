@@ -1,4 +1,8 @@
 class PrintMixin:
+    """
+    При создании экземпляра
+    подкласса его представление выводится в консоль.
+    """
     def __init__(self, *args, **kwargs) -> None:
         print(repr(self))
 

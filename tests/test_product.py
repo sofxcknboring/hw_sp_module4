@@ -84,3 +84,9 @@ def test_add_smartphones_and_lg(smartphones, lawn_grasses):
 
 def test_product_is_sub_base_product():
     assert issubclass(Product, BaseProduct)
+
+
+def test_product_with_zero_quantity():
+    with pytest.raises(ValueError, match='Товар с нулевым количеством'):
+        Product('product', 'desc', 1.0, 0)
+

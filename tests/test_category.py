@@ -1,7 +1,10 @@
+from unicodedata import category
+
 import pytest
 
 from src.category import Category, ProductIterator
 from src.product import Product
+from tests.conftest import category1
 
 
 def test_category_init(product1, product2, product3, category1):
@@ -53,3 +56,13 @@ def test_product_iterator(category1):
     products = list(iterator)
     expected_products = [str(product) for product in category1.products]
     assert products == expected_products
+
+
+def test_category_middle_price_exception():
+    category1 = Category('Category', 'desc', [])
+    assert category1.middle_price() == 0
+
+
+def test_middle_price(product1, product2):
+    category1 = Category('Category', 'desc', [product1, product2])
+    assert category1.middle_price() == 1.5

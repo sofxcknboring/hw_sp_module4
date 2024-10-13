@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
+
+
+class Product(BaseProduct, PrintMixin):
     """
     Класс для представления продуктов
     """
@@ -8,6 +12,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, product: dict):
@@ -34,7 +39,7 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if type(self) == type(other):
+        if isinstance(other, type(self)):
             return self.__price * self.quantity + other.__price * other.quantity
         raise TypeError
 

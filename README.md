@@ -1,3 +1,5 @@
+from src.base_product import BaseProduct
+
 ## Module4
 
 
@@ -16,8 +18,16 @@
 
 ### Что реализовано на данный момент:
 
+
 ```python
-class Product:
+class BaseProduct(ABC):
+    """
+    Абстрактный класс для продуктов. 
+    """
+```
+
+```python
+class Product(BaseProduct):
     """
     Класс для представления продуктов
     """
@@ -77,6 +87,14 @@ class ProductIterator:
     """
     category: Category
     index: int
+```
+
+```python
+class PrintMixin:
+    """
+    При создании экземпляра
+    подкласса его представление выводится в консоль.
+    """
 ```
 
 ## Тестирование

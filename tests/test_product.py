@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
+from src.base_product import BaseProduct
 from src.product import Product
 
 
@@ -79,3 +80,7 @@ def test_add_smartphones_and_lg(smartphones, lawn_grasses):
 
     assert total_price_smartphones == 500
     assert total_price_lawn_grasses == 300
+
+
+def test_product_is_sub_base_product():
+    assert issubclass(Product, BaseProduct)

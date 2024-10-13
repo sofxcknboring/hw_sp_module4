@@ -1,7 +1,8 @@
+from src.print_mixin import PrintMixin
 from src.product import Product
 
 
-class Category:
+class Category(PrintMixin):
     """
     Класс для представления категорий, их количества и количества продуктов в категориях
     """
@@ -17,7 +18,7 @@ class Category:
         self.name = name
         self.description = description
         self.__products = products
-
+        super().__init__()
         Category.category_count += 1
         Category.all_product_count += len(self.__products)
 

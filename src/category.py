@@ -40,6 +40,14 @@ class Category(PrintMixin):
         return ProductIterator(self)
 
 
+    def middle_price(self):
+        try:
+            return sum(map(lambda product: product.price, self.__products)) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+
+
+
 class ProductIterator:
     """
     Вспомогательный класс, с помощью которого можно перебирать товары одной категории
